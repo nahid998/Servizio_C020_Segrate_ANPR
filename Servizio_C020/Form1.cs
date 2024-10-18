@@ -41,18 +41,18 @@ namespace Servizio_C020
 
         private string JWTAsserzione()
         {
-            string privateKeyPath = "C:\\_BRAV\\CLIENTI\\SEGRATE\\Servizio_C020\\Servizio_C020\\Keys\\private-key-anpr-segrate.pem";
+            string privateKeyPath = "C:\\Keys\\private-key-anpr.pem";
 
             var privateKey = File.ReadAllText(privateKeyPath);
 
             RSA rsaPrivateKey = LoadRsaPrivateKeyFromPEM(privateKey);
-            var clientId = "43cd0ac6-fbc0-4c9b-8571-80238be8f873";
+            var clientId = "43cd0ac6-fbc0-4c9b-8571";
             var payload = new
             {
                 iss = clientId,
                 sub = clientId,
                 aud = "auth.interop.pagopa.it/client-assertion",
-                purposeId = "040a1a59-2029-4851-9c10-1631d1888cee",
+                purposeId = "040a1a59-2029",
                 jti = Guid.NewGuid().ToString(),
                 iat = DateTimeOffset.UtcNow.ToUnixTimeSeconds(),
                 exp = DateTimeOffset.UtcNow.AddDays(10).ToUnixTimeSeconds()
